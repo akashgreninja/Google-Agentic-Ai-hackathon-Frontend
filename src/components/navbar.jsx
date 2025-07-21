@@ -1,33 +1,44 @@
-import { Bell, User } from "lucide-react";
-import { Button } from "./ui/button";
-import { SearchBar } from "./search";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
-    <nav className="h-16 bg-nav-background border-b border-nav-border px-6 flex items-center justify-between">
-      {/* Logo */}
-      <div className="flex items-center space-x-3">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <div className="w-4 h-4 bg-primary-foreground rounded-sm"></div>
-        </div>
-        <span className="text-xl font-semibold text-foreground">MapNexus</span>
+    <nav className="h-16 w-full bg-white px-8 flex items-center justify-between shadow-sm">
+      {/* Left: Logo */}
+      <div className="flex items-center">
+        <span className="text-2xl font-semibold text-gray-900 tracking-tight font-sans">
+          Mis-3
+        </span>
       </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2">
-        <SearchBar onSearch={() => {}} />
-      </div>
-      {/* Right side - Profile and Notifications */}
-      <div className="flex items-center space-x-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="relative hover:bg-hover-subtle"
+
+      {/* Right: Nav Links + Upload Button + Avatar */}
+      <div className="flex items-center gap-6">
+        <Link
+          to="/dashboard"
+          className="text-sm font-medium text-gray-700 hover:text-black transition"
         >
-          <Bell className="h-5 w-5" />
-          <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full"></span>
-        </Button>
-        <Button variant="ghost" size="icon" className="hover:bg-hover-subtle">
-          <User className="h-5 w-5" />
-        </Button>
+          Dashboard
+        </Link>
+
+        <Link
+          to="/activity"
+          className="text-sm font-medium text-gray-700 hover:text-black transition"
+        >
+          Activity
+        </Link>
+
+        {/* Upload Button – outlined style */}
+        <Link
+          to="/upload"
+          className="px-4 py-1.5 rounded-md border border-blue-600 text-blue-600 text-sm font-medium hover:bg-blue-50 transition shadow-sm"
+        >
+          Upload
+        </Link>
+
+        {/* Avatar */}
+        <div className="w-9 h-9 rounded-full bg-gray-200 text-gray-800 font-semibold flex items-center justify-center shadow-inner text-sm">
+          AG
+        </div>
       </div>
     </nav>
   );

@@ -5,7 +5,7 @@ import React, { useCallback, useState } from "react";
 export const useApi = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const baseUrl = "https://04dcc6cf9ee5.ngrok-free.app/";
+  const baseUrl = "http://127.0.0.1:8000";
   const fn = async (args) => {
     let { url, method = "GET", body, header, params, ...rest } = args;
     if (params) {

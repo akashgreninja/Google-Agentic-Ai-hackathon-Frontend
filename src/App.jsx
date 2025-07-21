@@ -22,9 +22,8 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <h1>Welcome to the App</h1>
-        <TestRegisterButton />
+      <div className="min-h-screen w-full bg-[radial-gradient(#3b82f633_1px,transparent_1px)] [background-size:20px_20px]">
+        {/* <TestRegisterButton /> */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/upload" element={<Upload />} />
