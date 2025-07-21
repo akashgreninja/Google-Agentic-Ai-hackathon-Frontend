@@ -2,13 +2,36 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Dashboard } from "./screens/Dashboard";
 import { Upload } from "./screens/Upload";
-const App = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/upload" element={<Upload />} />
-    </Routes>
-  </Router>
-);
+import TestRegisterButton from "./components/TestRegisterButton";
+import React, { useEffect } from "react";
+import { getMessaging, onMessage } from "firebase/messaging";
+import { app } from "./helpers/firebase";
+
+const App = () => {
+  useEffect(() => {
+    const messaging = getMessaging(app);
+
+    // Foreground notification listener
+    onMessage(messaging, (payload) => {
+  console.log("📲 Foreground message received:", payload);
+
+  const { title, body } = payload.data;
+  alert(`${title}\n${body}`);
+});
+  }, []);
+
+  return (
+    <Router>
+      <div>
+        <h1>Welcome to the App</h1>
+        <TestRegisterButton />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/upload" element={<Upload />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

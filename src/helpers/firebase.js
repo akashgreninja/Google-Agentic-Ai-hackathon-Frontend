@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -17,4 +18,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
+export const getFCMToken = async () => {
+  try {
+    const messaging = getMessaging(app);
+    const token = await getToken(messaging, {
+      // urlBase64ToUint8Array: urlBase64ToUint8Array("BH3tePCgNH5wyNXIUbeJzlJc2U701OF2BayU-zRGmcUj-Pp2lGeprM_RqqcNJNikWJ61tjKiQma_lf9dV3H9xm8"),
+      vapidKey: "BH3tePCgNH5wyNXIUbeJzlJc2U701OF2BayU-zRGmcUj-Pp2lGeprM_RqqcNJNikWJ61tjKiQma_lf9dV3H9xm8", // Replace with your VAPID key
+    });
+
+    if (token) {
+      console.log("FCM Token:", token);
+      return token;
+    } else {
+      console.warn("No FCM token available. Request permission to generate one.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting FCM token:", error);
+    throw error;
+  }
+};
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/-/g, "+")
+    .replace(/_/g, "/");
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+
+  return outputArray;
+}
+
+
+
 export default storage;
+export { app };
