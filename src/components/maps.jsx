@@ -39,8 +39,9 @@ import { InfoCircleFilled } from '@ant-design/icons';
 // };
 
 export const Maps = ({ data, locations }) => {
+  const [routesEvents, setRoutesEvents] = useState(null);
   const getIconComp = (cat) => {
-    const Icon = iconMap[cat] || iconMap['default'];
+    const Icon = iconMap[cat.split(' ').join('').toLowerCase()] || iconMap['default'];
     return (
       <Icon
         style={{
@@ -54,6 +55,13 @@ export const Maps = ({ data, locations }) => {
       />
     );
   };
+
+  useEffect(() => {
+    if (!locations) {
+      setRoutesEvents(null);
+      return;
+    }
+  }, [locations]);
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <div style={{ height: '30rem', margin: '0 auto' }}>
@@ -70,7 +78,7 @@ export const Maps = ({ data, locations }) => {
             console.log('User clicked at:', lat, lng);
           }}
         >
-          {data?.incidents?.map((event, index) => (
+          {(routesEvents || data)?.incidents?.map((event, index) => (
             <AdvancedMarker key={index} position={event.location}>
               <Tooltip
                 title={
@@ -86,7 +94,7 @@ export const Maps = ({ data, locations }) => {
               </Tooltip>
             </AdvancedMarker>
           ))}
-          <Directions from={locations?.from} to={locations?.to} />
+          <Directions from={locations?.from} to={locations?.to} setRoutesEvents={setRoutesEvents} />
         </Map>
       </div>
     </APIProvider>

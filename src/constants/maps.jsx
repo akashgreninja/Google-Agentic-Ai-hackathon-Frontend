@@ -2,6 +2,9 @@ import flood from '../assets/flooded-house.png';
 import roadcrack from '../assets/road.png';
 import roadbarrier from '../assets/road-barrier.png';
 import accident from '../assets/fender-bender.png';
+import fire from '../assets/fire.png';
+import tree from '../assets/tree.png';
+import crowd from '../assets/crowd.png';
 
 const IncidentIcons = {
   flood: (props) => <img src={flood} alt="flood" {...props} />,
@@ -11,21 +14,15 @@ const IncidentIcons = {
   ),
   roadblock: (props) => <img src={roadbarrier} alt="roadblock" {...props} />,
   accident: (props) => <img src={accident} alt="accident" {...props} />,
-  fire: (props) => (
-    <img src="https://cdn-icons-png.flaticon.com/512/1239/1239984.png" alt="fire" {...props} />
-  ),
+  fire: (props) => <img src={fire} alt="fire" {...props} />,
   flashmob: (props) => (
     <img src="https://cdn-icons-png.flaticon.com/512/4218/4218741.png" alt="flashmob" {...props} />
   ),
   garbage: (props) => (
     <img src="https://cdn-icons-png.flaticon.com/512/2713/2713412.png" alt="garbage" {...props} />
   ),
-  treefall: (props) => (
-    <img src="https://cdn-icons-png.flaticon.com/512/2907/2907591.png" alt="treefall" {...props} />
-  ),
-  stampede: (props) => (
-    <img src="https://cdn-icons-png.flaticon.com/512/1198/1198298.png" alt="stampede" {...props} />
-  ),
+  treefall: (props) => <img src={tree} alt="treefall" {...props} />,
+  stampede: (props) => <img src={crowd} alt="stampede" {...props} />,
   other: (props) => (
     <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="other" {...props} />
   ),

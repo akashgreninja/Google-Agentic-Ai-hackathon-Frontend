@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { useApi } from '../helpers/api';
 
-export const Directions = ({ from, to }) => {
+export const Directions = ({ from, to, setRoutesEvents }) => {
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes');
   const [directionsService, setDirectionsService] = useState();
@@ -15,7 +15,7 @@ export const Directions = ({ from, to }) => {
       const lng = position.coords.longitude;
       console.log('User location:', lat, lng);
       callApi({
-        url: `data/agentic_predictive_route?lat=${lat}&lng=${lng}&radius_km=100&user_id=alice@example.com`,
+        url: `data/get_incidents_by_route?source_lat=${from.lat}&source_lng=${from.lng}&dest_lat=${to.lat}&dest_lng=${to.lng}`,
       });
     });
   };
@@ -26,8 +26,18 @@ export const Directions = ({ from, to }) => {
     setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
   }, [routesLibrary, map]);
   useEffect(() => {
+    if (data) {
+      setRoutesEvents(data);
+    }
+  }, [data]);
+  useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
-    if (!from || !to) return;
+    if (!from || !to) {
+      console.log({ from, to });
+      // directionsRenderer.setMap(null);
+      return;
+    }
+    getSuggestions();
     const request = {
       origin: { lat: from.lat, lng: from.lng },
       destination: { lat: to.lat, lng: to.lng },
@@ -40,7 +50,7 @@ export const Directions = ({ from, to }) => {
         console.error('Error fetching directions:', status);
       }
     });
-  }, [directionsService, directionsRenderer, from, to]);
+  }, [directionsService, directionsRenderer, JSON.stringify({ from, to })]);
 
   return null; // Directions are rendered on the map, no need to return anything
 };

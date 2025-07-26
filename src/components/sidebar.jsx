@@ -46,7 +46,8 @@ export const Sidebar = ({ data }) => {
           )}
           <div className="space-y-3">
             {data?.incidents?.map((event, index) => {
-              const Icon = iconMap[event.category?.toLowerCase()] || iconMap['default'];
+              const Icon =
+                iconMap[event.category?.split(' ').join('').toLowerCase()] || iconMap['default'];
               const severityColor = colorMap[event.severity];
 
               return (

@@ -54,11 +54,14 @@ export const Dashboard = () => {
         {/* Right: Map */}
         <div className="w-1/2 max-w-[600px]">
           <SearchBar
-            handleSubmit={({ to, from }) => {
-              setLocations({
-                to,
-                from,
-              });
+            handleSubmit={(val) => {
+              if (!val) {
+                setLocations(null);
+              } else
+                setLocations({
+                  to: val.to,
+                  from: val.from,
+                });
             }}
           />
           <Maps data={data} locations={locations} />
