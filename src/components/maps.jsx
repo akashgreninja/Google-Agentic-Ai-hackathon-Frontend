@@ -1,14 +1,44 @@
 // Maps.jsx
-import { AdvancedMarker, APIProvider, Map } from '@vis.gl/react-google-maps';
-import { useEffect, useState } from 'react';
+import {
+  AdvancedMarker,
+  APIProvider,
+  ControlPosition,
+  Map,
+  MapControl,
+  useMapsLibrary,
+} from '@vis.gl/react-google-maps';
+import { useEffect, useRef, useState } from 'react';
 import { Directions } from './directions';
 import { Tooltip } from 'antd';
 import iconMap from '../constants/maps';
 import { InfoCircleFilled } from '@ant-design/icons';
 
-export const Maps = ({ data }) => {
-  const [from, setFrom] = useState({ lat: 12.9352, lng: 77.6142 }); // Fire location
-  const [to, setTo] = useState({ lat: 12.9611, lng: 77.5836 }); // Protest location
+// const PlaceAutocomplete = ({ onPlaceSelect }) => {
+//   const handlePlaceSelect = useCallback(
+//     (event) => {
+//       const place = event.detail;
+//       onPlaceSelect(place);
+//     },
+//     [onPlaceSelect]
+//   );
+
+//   return (
+//     <div className="autocomplete-container">
+//       <PlaceAutocompleteElement
+//         inputAttributes={{
+//           placeholder: 'Search a location...',
+//           className: 'your-custom-input-class', // optional
+//         }}
+//         options={{
+//           fields: ['geometry', 'name', 'formatted_address'],
+//         }}
+//         onPlaceChanged={handlePlaceSelect}
+//       />
+//     </div>
+//   );
+// };
+
+export const Maps = ({ data, locations }) => {
   const getIconComp = (cat) => {
     const Icon = iconMap[cat] || iconMap['default'];
     return (
@@ -56,9 +86,7 @@ export const Maps = ({ data }) => {
               </Tooltip>
             </AdvancedMarker>
           ))}
-
-          {/* Render the route between from and to */}
-          <Directions from={from} to={to} />
+          <Directions from={locations?.from} to={locations?.to} />
         </Map>
       </div>
     </APIProvider>

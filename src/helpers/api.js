@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 export const useApi = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const baseUrl = 'https://e11398c9a4cc.ngrok-free.app/';
+  const baseUrl = 'https://a03821c6afac.ngrok-free.app/';
   const fn = async (args) => {
     let { url, method = 'GET', body, header, params, ...rest } = args;
     if (params) {

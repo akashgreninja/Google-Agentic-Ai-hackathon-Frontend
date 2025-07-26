@@ -24,8 +24,9 @@ export const getFCMToken = async () => {
     const token = await getToken(messaging, {
       // urlBase64ToUint8Array: urlBase64ToUint8Array("BH3tePCgNH5wyNXIUbeJzlJc2U701OF2BayU-zRGmcUj-Pp2lGeprM_RqqcNJNikWJ61tjKiQma_lf9dV3H9xm8"),
       vapidKey:
-        'BH3tePCgNH5wyNXIUbeJzlJc2U701OF2BayU-zRGmcUj-Pp2lGeprM_RqqcNJNikWJ61tjKiQma_lf9dV3H9xm8', // Replace with your VAPID key
+        'BO1XJM0LHM2TcoNJF8UQfekOfjooXvzwf573DwsCMjye07vU1WWTaYFgRBMOngkvNwu3-yhT4o5bHPK5HMYE_5o', // Replace with your VAPID key
     });
+    console.log(token);
     if (token) {
       return token;
     } else {
