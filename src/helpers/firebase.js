@@ -4,13 +4,13 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyBv9KQlXK1j9npTbwDLTWwWuWFf-KLyJ4A',
-  authDomain: 'sankalpa-b7b13.firebaseapp.com',
-  projectId: 'sankalpa-b7b13',
-  storageBucket: 'sankalpa-b7b13.appspot.com',
-  messagingSenderId: '248021982260',
-  appId: '1:248021982260:web:85043a5580a4f5b1cd3e61',
-  measurementId: 'G-777FHJ9472',
+  apiKey: 'AIzaSyABq-QVRBjmdh2ZoEjskWg5n-ddBQSqzeo',
+  authDomain: 'healthy-wares-340911.firebaseapp.com',
+  projectId: 'healthy-wares-340911',
+  storageBucket: 'healthy-wares-340911.firebasestorage.app',
+  messagingSenderId: '718852823294',
+  appId: '1:718852823294:web:f6844683c6d1b040562daf',
+  measurementId: 'G-VJJL640F6H',
 };
 
 // Initialize Firebase

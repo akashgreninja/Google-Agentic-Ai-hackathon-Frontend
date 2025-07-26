@@ -26,15 +26,15 @@ const App = () => {
       console.log('📲 Foreground message received:', payload);
 
       const { title, body } = payload.data;
-      showNotification({ type: 'info', title, description: body, placement: 'right' });
+      showNotification({ type: 'info', title, description: body });
     });
-  }, []);
-
+    // showNotification({ type: 'info', title: 'test', description: 'body' });
+  }, [showNotification]);
   return (
     <GlobalProviders>
       <div className="min-h-screen w-full bg-[radial-gradient(#3b82f633_1px,transparent_1px)] [background-size:20px_20px]">
-        {/* <TestRegisterButton /> */}
         {contextHolder}
+        {/* <TestRegisterButton /> */}
         {/* <Navbar /> */}
         <RenderRoutes />
       </div>
