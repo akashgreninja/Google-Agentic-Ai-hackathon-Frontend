@@ -7,6 +7,7 @@ export const Directions = ({ from, to, setRoutesEvents }) => {
   const routesLibrary = useMapsLibrary('routes');
   const [directionsService, setDirectionsService] = useState();
   const [directionsRenderer, setDirectionsRenderer] = useState();
+  const [prevState, setPrevState] = useState({});
 
   const { data, callApi } = useApi();
   const getSuggestions = () => {
@@ -34,7 +35,8 @@ export const Directions = ({ from, to, setRoutesEvents }) => {
     if (!directionsService || !directionsRenderer) return;
     if (!from || !to) {
       console.log({ from, to });
-      // directionsRenderer.setMap(null);
+      directionsRenderer.setDirections({ ...prevState, routes: [] });
+
       return;
     }
     getSuggestions();
@@ -45,12 +47,13 @@ export const Directions = ({ from, to, setRoutesEvents }) => {
     };
     directionsService.route(request, (result, status) => {
       if (status === routesLibrary.DirectionsStatus.OK) {
+        setPrevState(result);
         directionsRenderer.setDirections(result);
       } else {
         console.error('Error fetching directions:', status);
       }
     });
-  }, [directionsService, directionsRenderer, JSON.stringify({ from, to })]);
+  }, [directionsService, directionsRenderer, from, to]);
 
   return null; // Directions are rendered on the map, no need to return anything
 };
