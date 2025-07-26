@@ -2,7 +2,27 @@ import React from 'react';
 import { Sidebar } from '../../components/sidebar';
 import { Maps } from '../../components/maps';
 import { GeminiSearchBar } from '../../components/aiSearchBar';
+import { useEffect, useState } from 'react';
+import { useApi } from '../../helpers/api';
+
 export const Dashboard = () => {
+  const { data, callApi } = useApi();
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // const lat = position.coords.latitude;
+        // const lng = position.coords.longitude;
+        // {'lat': 12.9121, 'lng': 77.6446}
+        callApi({
+          // url: `data/get_relevant_incidents?lat=${lat}&lng=${lng}&radius_km=105&user_id=john.doe@example.com`,
+          url: `data/get_relevant_incidents?lat=${12.9121}&lng=${77.6446}&radius_km=5000&user_id=john.doe@example.com`,
+        });
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+      }
+    );
+  }, []);
   return (
     <>
       {/* Top Hero Section */}
@@ -28,12 +48,12 @@ export const Dashboard = () => {
       <div className="flex justify-center items-start w-full h-screen px-8 py-6 box-border gap-8">
         {/* Left: Sidebar */}
         <div className="w-1/2 max-w-[600px]" style={{ overflowY: 'scroll', height: '100%' }}>
-          <Sidebar />
+          <Sidebar data={data} />
         </div>
 
         {/* Right: Map */}
         <div className="w-1/2 max-w-[600px] mt-10">
-          <Maps />
+          <Maps data={data} />
         </div>
       </div>
     </>

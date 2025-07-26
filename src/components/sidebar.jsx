@@ -5,6 +5,8 @@ import { Car, Flame, Droplet, Megaphone, Music2, Wrench } from 'lucide-react';
 import { useState } from 'react';
 import GlassPopup from './GlassPopup';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import iconMap from '../constants/maps';
+import { Spin } from 'antd';
 
 // Sample event items with valid icon components
 const eventSidebarItems = [
@@ -17,49 +19,13 @@ const eventSidebarItems = [
     severity: 'high',
     timestamp: '10 mins ago',
   },
-  {
-    type: 'Concert',
-    icon: Music2,
-    title: 'Live concert @ Indiranagar',
-    description: 'Traffic diversions near Sony Signal.',
-    severity: 'low',
-    timestamp: '30 mins ago',
-  },
-  {
-    type: 'Accident',
-    icon: Car,
-    title: 'Car crash @ Silk Board',
-    description: 'Two-wheeler and cab collided, traffic building up.',
-    severity: 'medium',
-    timestamp: '15 mins ago',
-  },
-  {
-    type: 'Fire',
-    icon: Flame,
-    title: 'Fire near Koramangala 4th Block',
-    description: 'Smoke spotted near apartment complex. Fire dept en route.',
-    severity: 'high',
-    timestamp: '5 mins ago',
-  },
-  {
-    type: 'Protest',
-    icon: Megaphone,
-    title: 'Protest @ Town Hall',
-    description: 'Demonstrators blocking road, avoid via JC Road.',
-    severity: 'medium',
-    timestamp: '1 hour ago',
-  },
-  {
-    type: 'Maintenance',
-    icon: Wrench,
-    title: 'Road repair @ HSR Layout',
-    description: 'BBMP patching potholes. One lane closed.',
-    severity: 'low',
-    timestamp: '2 hours ago',
-  },
 ];
-
-export const Sidebar = () => {
+const colorMap = {
+  high: 'bg-red-500',
+  medium: 'bg-yellow-500',
+  low: 'bg-green-500',
+};
+export const Sidebar = ({ data }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   return (
@@ -70,15 +36,18 @@ export const Sidebar = () => {
       >
         <div className="p-4">
           <h2 className="text-lg font-semibold text-foreground mb-4">Nearby Events</h2>
+          {!data && (
+            <div
+              className="flex items-center justify-center"
+              style={{ width: '100%', height: '10rem' }}
+            >
+              <Spin />
+            </div>
+          )}
           <div className="space-y-3">
-            {eventSidebarItems.map((event, index) => {
-              const Icon = event.icon;
-              const severityColor =
-                event.severity === 'high'
-                  ? 'bg-red-500'
-                  : event.severity === 'medium'
-                  ? 'bg-yellow-500'
-                  : 'bg-green-500';
+            {data?.incidents?.map((event, index) => {
+              const Icon = iconMap[event.category?.toLowerCase()] || iconMap['default'];
+              const severityColor = colorMap[event.severity];
 
               return (
                 <Card
@@ -94,7 +63,9 @@ export const Sidebar = () => {
                         </div>
                         <div className="flex flex-col">
                           <CardTitle className="text-sm font-medium">{event.title}</CardTitle>
-                          <span className="text-xs text-muted-foreground">{event.timestamp}</span>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(event.timestamp).toLocaleString()}
+                          </span>
                         </div>
                       </div>
                       <span
@@ -105,7 +76,7 @@ export const Sidebar = () => {
                   </CardHeader>
                   <CardContent className="pt-0">
                     <CardDescription className="text-xs text-muted-foreground line-clamp-2">
-                      {event.description}
+                      {event.summary}
                     </CardDescription>
                   </CardContent>
                 </Card>

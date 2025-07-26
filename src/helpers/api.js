@@ -1,13 +1,11 @@
-import axios from "axios";
-
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState } from 'react';
 
 export const useApi = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = 'https://e11398c9a4cc.ngrok-free.app/';
   const fn = async (args) => {
-    let { url, method = "GET", body, header, params, ...rest } = args;
+    let { url, method = 'GET', body, header, params, ...rest } = args;
     if (params) {
       const queryString = new URLSearchParams(params).toString();
       url += `?${queryString}`;
@@ -15,15 +13,17 @@ export const useApi = () => {
     if (body) {
       body = JSON.stringify(body);
     }
-    return await fetch(baseUrl + url, {
+    const res = await fetch(baseUrl + url, {
       method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         ...header,
       },
       body,
       ...rest,
     });
+
+    return await res.json();
   };
 
   const callApi = useCallback(async (...args) => {
@@ -31,12 +31,9 @@ export const useApi = () => {
       setLoading(true);
       setData(await fn(...args));
     } catch (e) {
-      console.error(
-        `Error while making apiRequest request ${JSON.stringify(args)}`,
-        {
-          e,
-        }
-      );
+      console.error(`Error while making apiRequest request ${JSON.stringify(args)}`, {
+        e,
+      });
       throw e;
     } finally {
       setLoading(false);
