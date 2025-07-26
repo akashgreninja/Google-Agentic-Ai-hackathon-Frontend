@@ -5,13 +5,12 @@ import accident from '../assets/fender-bender.png';
 import fire from '../assets/fire.png';
 import tree from '../assets/tree.png';
 import crowd from '../assets/crowd.png';
+import power from '../assets/power.png';
 
 const IncidentIcons = {
   flood: (props) => <img src={flood} alt="flood" {...props} />,
   pothole: (props) => <img src={roadcrack} alt="pothole" {...props} />,
-  powercut: (props) => (
-    <img src="https://cdn-icons-png.flaticon.com/512/3208/3208707.png" alt="powercut" {...props} />
-  ),
+  powercut: (props) => <img src={power} alt="powercut" {...props} />,
   roadblock: (props) => <img src={roadbarrier} alt="roadblock" {...props} />,
   accident: (props) => <img src={accident} alt="accident" {...props} />,
   fire: (props) => <img src={fire} alt="fire" {...props} />,
