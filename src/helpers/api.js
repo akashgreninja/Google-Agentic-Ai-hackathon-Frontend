@@ -42,6 +42,7 @@ export const useApi = () => {
   return {
     callApi,
     data,
+    clearData: () => setData(null),
     loading,
   };
 };

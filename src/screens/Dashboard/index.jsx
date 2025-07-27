@@ -6,25 +6,32 @@ import { useEffect, useState } from 'react';
 import { useApi } from '../../helpers/api';
 import { SearchBar } from '../../components/search';
 
+const apiMap = {
+  tab1: 'get_relevant_incidents',
+  tab2: 'get_relevant_incidents',
+};
 export const Dashboard = () => {
   const [locations, setLocations] = useState();
-  const { data, callApi } = useApi();
+  const [selectedApi, setSelectedApi] = useState('tab1');
+  const { data, callApi, clearData } = useApi();
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         // const lat = position.coords.latitude;
         // const lng = position.coords.longitude;
-        // {'lat': 12.9121, 'lng': 77.6446}
+        clearData();
         callApi({
           // url: `data/get_relevant_incidents?lat=${lat}&lng=${lng}&radius_km=105&user_id=john.doe@example.com`,
-          url: `data/get_relevant_incidents?lat=${12.9121}&lng=${77.6446}&radius_km=5000&user_id=john.doe@example.com`,
+          url: `data/${[
+            apiMap[selectedApi],
+          ]}?lat=${12.9121}&lng=${77.6446}&radius_km=10&user_id=john.doe@example.com`,
         });
       },
       (error) => {
         console.error('Error getting location:', error);
       }
     );
-  }, []);
+  }, [selectedApi]);
 
   return (
     <>
@@ -47,8 +54,8 @@ export const Dashboard = () => {
       </div> */}
       <div className="flex justify-center items-start w-full h-screen px-8 py-6 box-border gap-8">
         {/* Left: Sidebar */}
-        <div className="w-1/2 max-w-[600px]" style={{ overflowY: 'scroll', height: '100%' }}>
-          <Sidebar data={data} />
+        <div className="w-1/2 max-w-[600px]">
+          <Sidebar data={data} selectedApi={selectedApi} onChange={setSelectedApi} />
         </div>
 
         {/* Right: Map */}

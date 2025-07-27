@@ -1,11 +1,25 @@
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { LikeFilled, DislikeFilled } from '@ant-design/icons';
+import { useState } from 'react';
+import { useApi } from '../helpers/api';
 
 export default function GlassPopup({ isOpen, onClose, data }) {
   if (!isOpen || !data) return null;
-
-  const { icon: Icon, title, summary, timestamp, severity } = data;
-
+  const [liked, setLiked] = useState(null);
+  const { icon: Icon, title, summary, timestamp, severity, category } = data;
+  const { callApi } = useApi();
+  const handleLike = (like) => {
+    setLiked(like);
+    // callApi(`data/update_interests`, {
+    //   method: 'POST',
+    //   body: {
+    //     category,
+    //     user_id: 'john.doe@example.com',
+    //     action: like ? 'add' : 'remove',
+    //   },
+    // });
+  };
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/40"
@@ -26,6 +40,13 @@ export default function GlassPopup({ isOpen, onClose, data }) {
         <div className="flex items-center gap-4 mb-6">
           {Icon && <Icon className="text-white" size={32} />}
           <h2 className="text-2xl font-semibold">{title}</h2>
+          <div className="flex items-center gap-2">
+            <LikeFilled
+              size={24}
+              style={{ color: liked ? '#3b82f6' : '#fff' }}
+              onClick={() => handleLike(!liked)}
+            />
+          </div>
         </div>
 
         <p className="text-white/90 leading-relaxed mb-4">{summary}</p>
