@@ -1,0 +1,234 @@
+{
+  "places": [
+    {
+      "name": "places/ChIJs5ydyTiuEmsR0fRSlU0C7k0",
+      "id": "ChIJs5ydyTiuEmsR0fRSlU0C7k0",
+      "types": [
+        "vegan_restaurant",
+        "meal_takeaway",
+        "vegetarian_restaurant",
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0433 479 794",
+      "internationalPhoneNumber": "+61 433 479 794",
+      "formattedAddress": "29 King St, Sydney NSW 2000, Australia",
+      "addressComponents": [
+        {
+          "longText": "29",
+          "shortText": "29",
+          "types": ["street_number"],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "King Street",
+          "shortText": "King St",
+          "types": ["route"],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Sydney",
+          "shortText": "Sydney",
+          "types": ["locality", "political"],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Council of the City of Sydney",
+          "shortText": "Sydney",
+          "types": ["administrative_area_level_2", "political"],
+          "languageCode": "en"
+        },
+        {
+          "longText": "New South Wales",
+          "shortText": "NSW",
+          "types": ["administrative_area_level_1", "political"],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Australia",
+          "shortText": "AU",
+          "types": ["country", "political"],
+          "languageCode": "en"
+        },
+        {
+          "longText": "2000",
+          "shortText": "2000",
+          "types": ["postal_code"],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "4RRH46J3+FJ",
+        "compoundCode": "46J3+FJ Sydney NSW, Australia"
+      },
+      "location": {
+        "latitude": -33.8688699,
+        "longitude": 151.20402529999998
+      },
+      "viewport": {
+        "low": {
+          "latitude": -33.8701262302915,
+          "longitude": 151.20249976970851
+        },
+        "high": {
+          "latitude": -33.8674282697085,
+          "longitude": 151.20519773029147
+        }
+      },
+      "rating": 4.7,
+      "googleMapsUri": "https://maps.google.com/?cid=5615428317618566353&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQABgBIAA",
+      "websiteUri": "https://www.peaceharmony.com.au/",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

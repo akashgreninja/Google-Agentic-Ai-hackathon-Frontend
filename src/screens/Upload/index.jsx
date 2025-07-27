@@ -41,11 +41,11 @@ export const Upload = () => {
   const [isDragOver, setIsDragOver] = React.useState(false);
   const fileInputRef = React.useRef(null);
   const [api, contextHolder] = notification.useNotification();
-  const showNotification = (type, message) => {
+  const showNotification = (type, message, placement = 'top') => {
     api[type]({
       message: type.charAt(0).toUpperCase() + type.slice(1),
       description: message,
-      placement: 'top',
+      placement,
       duration: 3,
     });
   };
@@ -177,7 +177,9 @@ export const Upload = () => {
             </div>
           )}
         </div>
-
+        <div>
+          <input type="text" />
+        </div>
         <div className="text-center">
           <Button
             onClick={handleSubmit}
